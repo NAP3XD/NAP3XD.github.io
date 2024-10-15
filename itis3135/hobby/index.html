@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><h1>Hobby SkateBoarding</h1></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        section {
+            display: none;
+            padding: 60px 20px;
+            height: 100vh;
+        }
+        #section1 { background-color: #f4f4f4; }
+        #section2 { background-color: #e2e2e2; }
+        #section3 { background-color: #d0d0d0; }
+        #section4 { background-color: #b8b8b8; }
+        #section5 { background-color: #a0a0a0; }
+        #section6 { background-color: #888888; }
+        #section7 { background-color: #707070; }
+    </style>
+</head>
+<body>
+    <H1>Skateboarding</H1>
+    <nav>
+        <a onclick="showSection('section1')">What</a>
+        <a onclick="showSection('section2')">Who</a>
+        <a onclick="showSection('section3')">When</a>
+        <a onclick="showSection('section4')">Where</a>
+        <a onclick="showSection('section5')">How</a>
+        <a onclick="showSection('section6')">Why</a>
+        <a onclick="showSection('section7')">AI Prompts</a>
+    </nav>
+    <section id="section1"></section>
+        <h2>What</h2>
+        <h3>The Board</h3>
+        <p>The blueprint.</p>
+        <figure>
+            <img src="" alt="original skateboard">
+            <figcaption>One of the first skateboards.</figcaption>
+        </figure>
+    </section>
+
+    <section id="section2">
+        <h2>Who</h2>
+        <h3>What A Wonderful Life</h3>
+        <p>More than just a hobby, a lifestyle.</p>
+        <figure>
+        <img src="../images/LR-group.jpg" alt="urban kings" width="50%" height="50%">
+        <figcaption>Urban Kings</figcaption>
+    </figure>
+    </section>
+
+    <section id="section3">
+        <h2>When</h2>
+        <h3>Respect The Process</h3>
+        <p>Content for section 3.</p>
+    </section>
+
+    <section id="section4">
+        <h2>Where</h2>
+        <h3>Lets GOO</h3>
+        <p>Embedded map?</p>
+    </section>
+
+    <section id="section5">
+        <h2>How</h2>
+        <h3>The Passion</h3>
+        <p>Content for section 5.</p>
+    </section>
+
+    <section id="section6">
+        <h2>Why</h2>
+        <h3>Keep Getting Back Up</h3>
+        <p>Content for section 6.</p>
+    </section>
+
+    <section id="section7">
+        <h2>AI Prompts</h2>
+        <h3>Computer Helpz</h3>
+        <p>Content for section 7.</p>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Show the first section by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('section1');
+        });
+    </script>
+</body>
+</html>
