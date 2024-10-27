@@ -12,11 +12,22 @@
         &#11088;<a href="https://www.freecodecamp.org/certification/npratt3/responsive-web-design" target="_new"><i>Certified in Responsive Web Design</i></a>&#11088;
     </address>
     <address>SkatePark So Cool...it's ICE cold!</address>
-    <a href="https://validator.w3.org/check?uri=referer">
+    <a id="html-validation" href="https://validator.w3.org/check?uri=referer">
         <img src="images/button_validation_html5.png" width="88" height="31" alt="Validate webpage HTML." >
     </a>
     
-    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+    <a id="css-validation" href="https://jigsaw.w3.org/css-validator/check/referer">
         <img src="images/button_validation_css.png" width="88" height="31" alt="Validate webpage CSS." >
     </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the current page URL
+            var currentUrl = window.location.href;
+    
+            // Update the validation links
+            document.getElementById("html-validation").href = "https://validator.w3.org/check?uri=" + encodeURIComponent(currentUrl);
+            document.getElementById("css-validation").href = "https://jigsaw.w3.org/css-validator/validator?uri=" + encodeURIComponent(currentUrl);
+        });
+    </script>
 </footer>
