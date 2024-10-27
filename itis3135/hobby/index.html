@@ -3,44 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><h1>Hobby SkateBoarding</h1></title>
+    <title>NAP3 Skateboarding Hobby</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Verdana', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f8f9fa;
+            color: #2c3e50;
         }
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #333;
+            background-color: #004080; /* Changed to a shade of blue */
             color: white;
             text-align: center;
             padding: 1em 0;
+            z-index: 1000;
         }
         nav a {
-            color: white;
+            color: #b0c4de; /* Set links to a shade of blue */
             margin: 0 15px;
             text-decoration: none;
             cursor: pointer;
+        }
+        h1 {
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px; /* offset for fixed nav */
+            background-color: #9ec4f5;
+        }
+        h2 {
+            font-size: 30px;
+        }
+        h3 {
+            text-align: center;
+        }
+        p {
+            padding: 30px;
+            line-height: 1.6;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 5px solid #ddd;
+            border-radius: 10px;
+        }
+        figcaption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        form {
+            border: 2px solid black;
+            padding: 20px;
+            background-color: rgb(192, 192, 192);
+            border-radius: 5px;
         }
         section {
             display: none;
             padding: 60px 20px;
             height: 100vh;
+            overflow: auto;
         }
-        #section1 { background-color: #f4f4f4; }
-        #section2 { background-color: #e2e2e2; }
-        #section3 { background-color: #d0d0d0; }
-        #section4 { background-color: #b8b8b8; }
-        #section5 { background-color: #a0a0a0; }
-        #section6 { background-color: #888888; }
-        #section7 { background-color: #707070; }
+        #section1 { background-color: #e0f7fa; }
+        #section2 { background-color: #b2ebf2; }
+        #section3 { background-color: #80deea; }
+        #section4 { background-color: #4dd0e1; }
+        #section5 { background-color: #26c6da; }
+        #section6 { background-color: #00bcd4; }
+        #section7 { background-color: #00acc1; }
+
+        address {
+            text-align: center;
+            padding: 20px;
+            background-color: #0e4b9b;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        address a {
+            color: #ffcc00; /* Bright yellow to stand out against the dark background */
+            text-decoration: none;
+            font-weight: bold;
+        }
+        address a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <H1>Skateboarding</H1>
+    <header>
     <nav>
         <a onclick="showSection('section1')">What</a>
         <a onclick="showSection('section2')">Who</a>
@@ -50,56 +105,182 @@
         <a onclick="showSection('section6')">Why</a>
         <a onclick="showSection('section7')">AI Prompts</a>
     </nav>
-    <section id="section1"></section>
-        <h2>What</h2>
-        <h3>The Board</h3>
-        <p>The blueprint.</p>
+  <!-- <H1>Skateboarding: The past time of Kings</H1> I moved header to main because of my design preferences, but wanted to include here for rubric -->
+</header>
+    <main>
+    <H1>Skateboarding: The pastime of Kings</H1>
+    <section id="section1">
+        <h2>The What, Dude?</h2>
+        <h3>Just a Plank with Holes</h3>     
         <figure>
-            <img src="" alt="original skateboard">
-            <figcaption>One of the first skateboards.</figcaption>
+            <img src="images/80s-style-shaped-skateboard.png" alt="original skateboard" width="25%" height="25%">
+            <figcaption>One of the first styles skateboards.</figcaption>     
         </figure>
+        <p style="text-align: center;"><i>please generate an img of an 80s style shaped skateboard</i></p>
+        <p>Skateboarding originated in the late 1940s and early 1950s when surfers in California wanted something to do when the waves were flat. They started by attaching roller skate wheels to wooden boxes or boards, creating the first "sidewalk surfers." As the sport grew, skateboards evolved in design and construction. By the 1970s, skateboarding had become a cultural phenomenon, with skate parks and dedicated gear appearing. The advent of polyurethane wheels in 1973 revolutionized the sport, providing better grip and smoother rides. Today, skateboarding continues to evolve, blending athleticism with creativity and influencing fashion, music, and art. Ever tried your hand at any skate tricks yourself?</p>
+        <form>
+            <label>Have you skateboarded before?</label><br>
+            <label>
+                <input type="radio" name="skateboarded" value="yes"> Yes
+            </label>
+            <label>
+                <input type="radio" name="skateboarded" value="no"> No
+            </label>
+            <br><br>
+        
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+        
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" required><br><br>
+        
+            <button type="submit">Submit</button>
+        </form>
     </section>
 
     <section id="section2">
-        <h2>Who</h2>
-        <h3>What A Wonderful Life</h3>
-        <p>More than just a hobby, a lifestyle.</p>
+        <h2>The Who... Who Are You?</h2> 
+        <h3>What A Wonderful, Horrible Life</h3>
         <figure>
-        <img src="../images/LR-group.jpg" alt="urban kings" width="50%" height="50%">
+        <img src="images/LR-group.jpg" alt="urban kings" width="50%" height="50%">
         <figcaption>Urban Kings</figcaption>
     </figure>
-    </section>
+    
+    <p>More than just a some hobby, a lifestyle. Skateing is hard, learning to do so well alone would be darn near impossible. The culture is what keeps you getting up after each and every fall, Find your people.</p>
+        <p><strong>Top 10 Skaters</strong></p>
+        <ul> 
+            <li>1. Tony Hawk</li>
+            <li>2. Rodney Mullen</li>
+            <li>3. Nyjah Huston</li>
+            <li>4. Elissa Steamer</li>
+            <li>5. Danny Way</li>
+            <li>6. Mark Gonzales</li>
+            <li>7. Lance Mountain</li>
+            <li>8. Chris Cole</li>
+            <li>9. Andrew Reynolds</li>
+            <li>10. Tom Penny</li>
+        </ul> 
+    
+</section>
 
     <section id="section3">
-        <h2>When</h2>
+        <h2>When..You Dont Rush.</h2>
         <h3>Respect The Process</h3>
-        <p>Content for section 3.</p>
+        <figure>
+            <img src="images\skate-every-day-sign.png" alt="skate every day" width="25%" height="25%">
+            <figcaption>A sign of when to skate.</figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate an img of a skate every day sign</i></p>
+        <p>Learning how to skateboard is a thrilling journey of perseverance and determination. It begins with mastering the basics, from balancing on the board to executing your first push-off. Each tumble and scrape is part of the process, teaching resilience and dedication. As you progress, the sense of accomplishment grows with every new trick and technique conquered. Skateboarding fosters a unique community spirit, encouraging you to push your limits and support fellow skaters along the way. It's not just about the sport itself, but the growth and connections you make during your ride</p>
+        <figure>
+            <img src="images\skateboard-and-clock.png" alt="skateboard and clock side by side" width="25%" height="25%">
+            <figcaption>The time to start is now!</figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate an img of a skateboard and a clock</i></p>
+        
     </section>
 
     <section id="section4">
-        <h2>Where</h2>
+        <h2>Where..in the World</h2>
         <h3>Lets GOO</h3>
-        <p>Embedded map?</p>
+        <figure>
+            <img src="images\different-skateboarding-places.png" alt="various skating places" width="50%" height="50%">
+            <figcaption>Different skateboarding spots.
+            </figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate an img of different skateboarding places</i></p>
+        <p>Skate is art as much as sport. Being able to skate in various environments—like parks, streets, and flatground—opens up a world of possibilities and challenges. Skate parks offer ramps and rails designed for tricks and stunts, while street skating lets you creatively interact with urban architecture, turning curbs and stairs into playgrounds. Flatground skating hones your control and precision, perfect for practicing those foundational tricks. Each environment brings its own set of thrills and skills, making skating a versatile and endlessly exciting pursuit.</p>
+        <form>
+            <label for="skateboarding-type">Favorite Type of Skateboarding:</label>
+            <select id="skateboarding-type" name="skateboarding-type">
+                <option value="vert">Vert</option>
+                <option value="street">Street</option>
+                <option value="flatground">Flatground</option>
+                <option value="freestyle">Freestyle</option>
+                <option value="park">Park</option>
+            </select>
+            <br><br>
+        
+            <label for="skater-location">Where have you seen Skaters?</label><br>
+            <textarea id="skater-location" name="skater-location" rows="4" cols="50" placeholder="Share your thoughts here..."></textarea>
+            <br><br>
+        
+            <label for="photo-upload">Upload a Rad Skater Pic:</label><br>
+            <input type="file" id="photo-upload" name="photo-upload" accept="image/*">
+            <br><br>
+        
+            <button type="submit">Submit</button>
+        </form>
+          
     </section>
 
     <section id="section5">
-        <h2>How</h2>
+        <h2>How...so consistant</h2>
         <h3>The Passion</h3>
-        <p>Content for section 5.</p>
+        <figure>
+            <img src="images\skateboarder-doing-a-kickflip-over-a-traffic-cone.png" alt="skate every day" width="50%" height="50%">
+            <figcaption>A skater training hard.</figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate an img of a skateboarder doing a kickflip over a traffic cone</i></p>
+        <p>Achieving consistency in skateboarding is a blend of practice, patience, and persistence. It starts with nailing down the basics until they become second nature. Each session on the board builds muscle memory, refining your balance and control. Embracing the grind of repetition—whether it’s perfecting an ollie or a kickflip—helps instill the confidence needed to perform tricks seamlessly. The more you skate, the better you understand your board and its nuances. Consistency isn't just about tricks, it's about creating a flow and rhythm in your skating that feels natural and reliable.</p>
+        <h4>Coach or NO Coach? That IS the Question</h4>
+        <p>Having a skateboarding coach can significantly enhance a skater's skills and confidence. Coaches provide personalized guidance tailored to an individual's strengths and weaknesses, helping skaters master techniques and improve their overall performance. They offer valuable feedback, ensuring that proper form and safety practices are followed, which can prevent injuries. Additionally, a coach can help set achievable goals and keep skaters motivated, fostering a supportive environment that encourages progression. With a coach's expertise, skaters can navigate challenges more effectively and enjoy the journey of mastering the sport.</p>
     </section>
 
     <section id="section6">
-        <h2>Why</h2>
+        <h2>Why Do It?</h2>
         <h3>Keep Getting Back Up</h3>
-        <p>Content for section 6.</p>
+        <figure>
+            <img src="images\skateboarding-mental-health.png" alt="boy skating before cheering crowd" width="35%" height="35%">
+            <figcaption>Boy skating is a part of the group.</figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate a skateboarding mental health img</i></p>
+        <p>Perseverance is essential both in life and skateboarding, as it empowers individuals to overcome challenges and setbacks. In skateboarding, mastering new tricks often involves repeated attempts, failures, and adjustments. Each fall teaches valuable lessons, fostering resilience and determination. Similarly, in life, the ability to keep trying in the face of obstacles builds character and confidence. Embracing perseverance allows us to grow, learn from our experiences, and ultimately achieve our goals, whether it's landing a difficult trick or navigating life's ups and downs. The journey becomes as rewarding as the destination when we commit to never giving up.</p>
+        <figure>
+            <img src="images\skateboarder-falling.png" alt="skater falling on grass" width="35%" height="35%">
+            <figcaption>With our friends, we get back up.</figcaption>
+        </figure>
+        <p style="text-align: center;"><i>please generate an img of a skateboarder falling</i></p>
     </section>
 
     <section id="section7">
         <h2>AI Prompts</h2>
         <h3>Computer Helpz</h3>
-        <p>Content for section 7.</p>
+        <ul>
+            <li>Create an HTML website that is one page but displays seven sections.</li>
+            <li>Create this using JavaScript.</li>
+            <li>Have the sections dynamically load from a script.</li>
+            <li>Rewrite to be a solution using CSS and/or JS that hides all sections except the one you have clicked. The idea is to mimic the nav bar in your main site, where the user clicks a "link" in your nav tag that will hide all the sections on the page and ONLY display info of the section of choice.</li>
+            <li>Each section should start with an <code>&lt;h2&gt;</code> and include an <code>&lt;h3&gt;</code>.</li>
+            <li>Generate an image of an 80s style shaped skateboard.</li>
+            <li>Generate an image of a "Skate Every Day" sign.</li>
+            <li>Include skateboarding puns.</li>
+            <li>Generate an image of different skateboarding places.</li>
+            <li>Generate an image of a skateboarder doing a kickflip over a traffic cone.</li>
+            <li>Generate an image related to skateboarding and mental health.</li>
+            <li>Generate an image of a skateboard and a clock.</li>
+            <li>Generate an image of a skateboarder falling.</li>
+        </ul>
+   
     </section>
-
+</main>
+    <footer>
+    <address>
+        <p>Designed by: <a href="https://webpages.charlotte.edu/npratt3/itis3135/prattdesigns.com/">Pratt Designs Co. ©2024</a></p>
+        &#11088;<a href="https://www.freecodecamp.org/certification/npratt3/responsive-web-design" target="_new"><i>Certified in Responsive Web Design</i></a>&#11088;
+        <a href="https://validator.w3.org/check?uri=referer">
+            <img src="../images/button_validation_html5.png" width="88" height="31" alt="Validate webpage HTML." >
+        </a>
+        
+        <a href="https://jigsaw.w3.org/css-validator/check/referer">
+            <img src="../images/button_validation_css.png" width="88" height="31" alt="Validate webpage CSS." >
+        </a>
+        <a href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/npratt3/itis3135/hobby">
+            <img src="images\button-validation-wcag.png" width="88" height="31" alt="ADA webpage CSS." >
+        </a>
+        
+    </address>
+    </footer>
     <script>
         function showSection(sectionId) {
             // Hide all sections
@@ -117,5 +298,6 @@
             showSection('section1');
         });
     </script>
+    
 </body>
 </html>
