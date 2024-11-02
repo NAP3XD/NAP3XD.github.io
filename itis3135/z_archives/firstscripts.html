@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<title>ITIS-3135 First Scripts </title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" href="styles/default.css">
+		<script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    
+	</head>
+<body>
+
+    <div data-include="components/header.html"></div>
+    
+<main>
+<h2>First Scripts</h2>
+
+
+
+<h3 id="date-time"></h3>
+        <form onsubmit="event.preventDefault(); greetUser();">
+            <label for="user-name">Your Name:</label>
+            <input type="text" id="user-name" name="user-name" required><br><br>
+            <label for="user-mood">How are you feeling?</label>
+            <input type="text" id="user-mood" name="user-mood" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <p id="greeting"></p>
+
+        <h4>Polygon Name Finder</h4> 
+        <label for="number-input">Enter your favorite number:</label> 
+        <input type="text" id="number-input"> 
+        <button id="submit-button">Find Polygon Name</button>
+        <section>
+            <h3>Select Your Skate Coach</h3>
+    <form id="coachForm">
+        <label for="style">Choose a style:</label>
+        <select id="style" name="style">
+            <option value="">--Select a style--</option>
+            <option value="vert">Vert</option>
+            <option value="street">Street</option>
+            <option value="park">Park</option>
+        </select>
+        <button type="submit">Find Coach</button>
+    </form>
+
+    <h4 id="result"></h4>
+        </section>
+
+        <section>
+            <h3>Skate Gear Inventory Tracker</h3>
+            <table> <thead> <tr> <th>Item</th> <th>Quantity</th> <th>Actions</th> </tr> </thead> <tbody id="inventory-table"> <!-- Inventory items will be populated here by JavaScript --> </tbody> </table>
+        </section>
+
+        <section>
+            <h3>Team Skater Social Media Shoutout</h3>
+            <form onsubmit="event.preventDefault(); submitContactForm();"> 
+                <label for="contact-name">Team Shoutout:</label> 
+                <input type="text" id="contact-name" required> 
+                <label for="contact-message">Whats up?:</label> 
+                <textarea id="contact-message" required></textarea> 
+                <button type="submit">Send Message</button> </form>
+        </section>
+        <h3>Add Items to Store</h3>
+       <section>
+        <form onsubmit="event.preventDefault(); addItem('skateboard');"> 
+            <label for="skateboard-name">Skateboard Name:</label> 
+            <input type="text" id="skateboard-name" required> 
+            <button type="submit">Add Skateboard</button> 
+        </form> 
+        <form onsubmit="event.preventDefault(); addItem('helmet');"> 
+            <label for="helmet-size">Helmet Size:</label> 
+            <input type="text" id="helmet-size" required> 
+            <button type="submit">Add Helmet</button> 
+        </form> 
+        <form onsubmit="event.preventDefault(); addItem('wheels');"> 
+            <label for="wheels-size">Wheels Size:</label> 
+            <input type="text" id="wheels-size" required> 
+            <button type="submit">Add Wheels</button> 
+        </form>
+       </section>
+
+       <section>
+        <h3>Hard Goods</h3>
+        <form id="inventory-form">
+            <label for="inventory-select">Look up Stock:</label>
+            <select id="inventory-select">
+                <option value="Real Deck">Real Deck</option>
+                <option value="Ace AF1 Trucks">Ace AF1 Trucks</option>
+                <option value="Bronson Bearings">Bronson Bearings</option>
+                <option value="Girl Deck">Girl Deck</option>
+                
+            </select>
+            <button type="button" id="check-inventory-button">Check Inventory</button>
+            <p id="output"></p>
+        </form>
+    </section>
+
+        <script src="scripts/defaultscripts.js"></script> 
+</main>
+
+    <div data-include="components/footer.html"></div>
+	<script src="scripts/HTMLInclude.min.js">
+
+    </script>
+</body>
+</html>
