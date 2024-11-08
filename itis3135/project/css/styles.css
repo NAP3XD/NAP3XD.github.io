@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  /* Header & Navigation */
+  header {
+    background-color: #006f3c; /* UNCC green */
+    color: #fcd116; /* UNCC gold */
+    padding: 1em;
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #006f3c;
+  }
+  
+  nav ul li {
+    margin: 0 1em;
+  }
+  
+  nav ul li a {
+    color: #fcd116;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #006f3c;
+    color: #fcd116;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Content */
+  main {
+    padding: 20px;
+  }
+  
+  /* Campus Spots Dynamic Section */
+  .spot-img {
+    display: none;
+  }
+  
+  .spot-img.active {
+    display: block;
+  }
+
+  /* Sponsors Section */
+#sponsors {
+  text-align: center;
+  padding: 20px;
+}
+
+.sponsor-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sponsor-list a img {
+  width: 150px; /* Adjust as needed */
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.sponsor-list a img:hover {
+  transform: scale(1.1);
+}
+
+  
