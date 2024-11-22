@@ -11,61 +11,70 @@
 
     <div data-include="components/header.html"></div>
     
-<main>
-    <h2>ITIS 3135 : BYO-Skate-Intro </h2>
-    <h3>Lets build that Skate Profile.</h3>
-    <form id="introform" method="post"> 
-        
-        <label for="name">Name:</label> 
-        <input type="text" id="name" value="Tony Hawk" required> 
-        <label for="mascot">Mascot:</label> 
-        <input type="text" id="mascot" value="Skateboarding Gopher" required> 
-        <br><br> <label for="intro-image">Add your image:</label> 
-
-        <input type="file" name="file" id="intro-image" required> 
-        <div id="load-image"></div> <br> 
-        <label for="image-caption">Image Caption:</label> 
-        <input type="text" id="image-caption" value="Catching air!" required>
-        <br><br> 
-        
-        <label for="personal-background">Personal Background:</label> 
-        <input type="text" id="personal-background" value="Born to ride." required> 
-        <br><br> 
-        
-        <label for="professional-background">Professional Background:</label> 
-        <input type="text" id="professional-background" value="Skateboarding legend." required> 
-        <br><br> 
-        
-        <label for="academic-background">Academic Background:</label> 
-        <input type="text" id="academic-background" value="School of Hard Knocks." required> 
-        <br><br> 
-        
-        <label for="web-dev">Background in Web Development:</label>       
-        <input type="text" id="web-dev" value="Skate parks are my canvas." required> 
-        <br><br> 
-
-        <label for="platform">Primary Computer Platform:</label> 
-        <input type="text" id="platform" value="Windows" required> 
-        <br><br> 
-        
-        <label for="courses">Courses currently taking:</label> 
-        <button id="courses" type="button">Add Course</button> 
-        <div id="courses-container"></div> 
-        <br><br> 
-        
-        <label for="funny">Funny thing?</label> 
-        <input type="text" id="funny" value="Ever seen a gopher do a kickflip?" required> 
-        <br><br> 
-        
-        <label for="anything">Anything else?</label> 
-        <input type="text" id="anything" value="Always wear a helmet." required> 
-        <br><br> 
-        
-        <label for="agree"> 
-        <input type="checkbox" id="agree" name="agree" required> I understand that what is on this page is not password protected and I will not put anything here that I don't want publicly available. </label> <br><br> <button type="submit">Submit</button> <button type="reset">Reset</button> </form>
-</main>
+    <main>
+        <h2>ITIS 3135 : Introduction Form</h2>
+        <h3>Time to BYO Intro page, please fill out the form below so we can create your own page.</h3>
+        <form id="introform" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="mascot">Mascot:</label>
+            <input type="text" id="mascot" required>
+            <br>
+            <br>
+            <label for="intro-image">Add your image:</label>
+            <input type="file" name="file" id="intro-image" required>
+            <div id="load-image"></div>
+            <br>
+            <label for="image-caption">Image Caption:</label>
+            <input type="text" id="image-caption" required>
+            <br>
+            <br>
+            <label for="personal-background">Personal Background:</label>
+            <input type="text" id="personal-background" required>
+            <br>
+            <br>
+            <label for="professional-background">Professional Background:</label>
+            <input type="text" id="professional-background" required>
+            <br>
+            <br>
+            <label for="academic-background">Academic Background:</label>
+            <input type="text" id="academic-background" required>
+            <br>
+            <br>
+            <label for="web-dev">Background in Web Development:</label>
+            <input type="text" id="web-dev" required>
+            <br>
+            <br>
+            <label for="platform">Primary Computer Platform:</label>
+            <input type="text" id="platform" required>
+            <br>
+            <br>
+            <label for="courses">Courses currently taking:</label>
+            <button id="courses" type="button">Add Course</button>
+            <div id="courses-container"></div>
+            <br>
+            <br>
+            <label for="funny">Funny thing?</label>
+            <input type="text" id="funny" required>
+            <br>
+            <br>
+            <label for="anything">Anything else?</label>
+            <input type="text" id="anything" required>
+            <br>
+            <br>
+            <label for="agree">
+                <input type="checkbox" id="agree" name="agree" required>
+                I understand that what is on this page is not password protected and I will not put anything here that I don't want publicly available.
+            </label>
+            <br>
+            <br>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </main>
 
     <div data-include="components/footer.html"></div>
 	<script src="scripts/HTMLInclude.min.js"></script>
+    <script src="scripts/intro.js"></script>
 </body>
 </html>

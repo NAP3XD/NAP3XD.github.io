@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<title>Nicholas Pratt III ITIS-3135 </title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" href="styles/default.css">
+		<script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+.slideshow-container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    background: #fff;
+}
+
+.slide {
+    display: none;
+    text-align: center;
+}
+
+.slide img {
+    width: 50%;
+    height: 50%;
+}
+
+.caption {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.dots-container {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.dot {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+}
+    </style>
+	</head>
+<body>
+
+    <div data-include="components/header.html"></div>
+    
+<main>
+<h2>Name Slideshow</h2>
+
+<div class="slideshow-container">
+    <div class="slide" data-index="0">
+        <img src="images/necklace.png" alt="Necklace">
+        <div class="caption">N - for Necklace</div>
+    </div>
+    <div class="slide" data-index="1">
+        <img src="images/ice.png" alt="Ice">
+        <div class="caption">I - for Ice</div>
+    </div>
+    <div class="slide" data-index="2">
+        <img src="images/camera.png" alt="Camera">
+        <div class="caption">C - for Camera</div>
+    </div>
+    <div class="slide" data-index="3">
+        <img src="images/hat.png" alt="Hat">
+        <div class="caption">H - for Hat</div>
+    </div>
+    <div class="slide" data-index="4">
+        <img src="images/oak.png" alt="Oak">
+        <div class="caption">O - for Oak</div>
+    </div>
+    <div class="slide" data-index="5">
+        <img src="images/lamp.png" alt="Lamp">
+        <div class="caption">L - for Lamp</div>
+    </div>
+    <div class="slide" data-index="6">
+        <img src="images/animals.png" alt="Animals">
+        <div class="caption">A - for animals</div>
+    </div>
+    <div class="slide" data-index="7">
+        <img src="images/sunflower.png" alt="Sunflower">
+        <div class="caption">S - for Sunflower</div>
+    </div>
+    <div class="slide" data-index="8">
+        <img src="images/pirate.png" alt="Pirate">
+        <div class="caption">P - for Pirate</div>
+    </div>
+    <div class="slide" data-index="9">
+        <img src="images/rover.png" alt="Rover">
+        <div class="caption">R - for Rover</div>
+    </div>
+    <div class="slide" data-index="10">
+        <img src="images/animals.png" alt="Animals">
+        <div class="caption">A - for Animals</div>
+    </div>
+    <div class="slide" data-index="11">
+        <img src="images/turtle.png" alt="Turtle">
+        <div class="caption">T - for Turtle</div>
+    </div>
+    <div class="slide" data-index="12">
+        <img src="images/turtle.png" alt="Turtle">
+        <div class="caption">T - for Turtle</div>
+    </div>
+</div>
+
+<!-- Navigation dots -->
+<div class="dots-container">
+    <span class="dot" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+    <span class="dot" data-index="3"></span>
+    <span class="dot" data-index="4"></span>
+    <span class="dot" data-index="5"></span>
+    <span class="dot" data-index="6"></span>
+    <span class="dot" data-index="7"></span>
+    <span class="dot" data-index="8"></span>
+    <span class="dot" data-index="9"></span>
+    <span class="dot" data-index="10"></span>
+    <span class="dot" data-index="11"></span>
+    <span class="dot" data-index="12"></span>
+</div>
+<p>AI text prmops used with Microsfts Copilot</p>
+<ul>
+    <li>please generate an img of a necklace</li>
+    <li>please generate an img of ice</li>
+    <li>please generate an img of a camera</li>
+    <li>please generate an img of a hat</li>
+    <li>please generate an img of an oak tree</li>
+    <li>please generate an img of a lamp</li>
+    <li>please generate an img of animals</li>
+    <li>please generate an img of a sunflower</li>
+    <li>please generate an img of a pirate</li>
+    <li>please generate an img of a moon rover</li>
+    <li>please generate an img of a turtle</li>
+</ul>
+
+</main>
+
+    <div data-include="components/footer.html"></div>
+	<script src="scripts/HTMLInclude.min.js"></script>
+    <script>
+       $(document).ready(function () {
+    // Include header and footer dynamically
+    $("#header").load("header.html");
+    $("#footer").load("footer.html");
+
+    let currentIndex = 0;
+    const slides = $(".slide");
+    const dots = $(".dot");
+
+    // Function to show the current slide
+    function showSlide(index) {
+        slides.hide();
+        dots.removeClass("active");
+        $(slides[index]).fadeIn();
+        $(dots[index]).addClass("active");
+        currentIndex = index;
+    }
+
+    // Show the first slide initially
+    showSlide(currentIndex);
+
+    // Add click event for dots
+    dots.click(function () {
+        const index = $(this).data("index");
+        showSlide(index);
+    });
+}); 
+    </script>
+</body>
+</html>
