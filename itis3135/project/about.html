@@ -7,19 +7,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>About UNCC Skateboarding</h1>
-  </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="campus_spots.html">Campus Spots</a></li>
-      <li><a href="sk8_comp.html">Competition</a></li>
-      <li><a href="contest.html">Contest</a></li>
-    </ul>
-  </nav>
+  <div data-include="components/header.html"></div>
 
   <main>
     <section>
@@ -29,18 +18,41 @@
 
     <section>
       <h2>Meet Our Officers</h2>
-      <ul>
-        <li><strong>John Doe</strong> - President</li>
-        <li><strong>Jane Smith</strong> - Vice President</li>
-        <li><strong>Mike Brown</strong> - Treasurer</li>
-        <li><strong>Sarah White</strong> - Secretary</li>
-        <li><strong>Emily Green</strong> - Event Coordinator</li>
-      </ul>
+      <figure>
+        <img class="officer" src="./images/nickking.jpg" alt="nicky p">
+        <figcaption>Chairman of the SK8-Board</figcaption>
+        <strong>Nick P. III</strong>
+      </figure>
+      <figure>
+        <img class="officer" src="./images/dill.png" alt="Dill Hawk">
+        <figcaption>Secretary General</figcaption>
+        <strong>Dillion S.</strong>
+      </figure>
+      <figure>
+        <img class="officer" src="./images/jonohat.jpg" alt="J.Alan B.">
+        <figcaption>Culture/Streetz Officer</figcaption>
+        <strong>Jono</strong>
+      </figure>
+      <figure>
+        <img class="officer" src="path/to/sarah-white.jpg" alt="AA-ron">
+        <figcaption>Media/photography</figcaption>
+        <strong>A-A-Ron</strong>
+      </figure>
+      <figure>
+        <img class="officer" src="path/to/noWhere.jpg" alt="joke position">
+        <figcaption>Pool boy</figcaption>
+        <strong>Taking Applications</strong>
+      </figure>
     </section>
+    
   </main>
 
-  <footer>
-    <p>&copy; 2024 UNCC Skateboarding Club</p>
-  </footer>
+  <div data-include="components/footer.html"></div>
+	<script src="scripts/HTMLInclude.min.js"></script>
+  <script>
+    const pageData = {
+      newTitle: "About UNCC Skateboarding"
+    };
+  </script>
 </body>
 </html>

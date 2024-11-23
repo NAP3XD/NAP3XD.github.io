@@ -7,23 +7,12 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <h1>UNCC Skateboarding Club</h1>
-    <p>Where skaters unite at UNCC!</p>
-  </header>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="campus_spots.html">Campus Spots</a></li>
-      <li><a href="sk8_comp.html">Competition</a></li>
-      <li><a href="contest.html">Contest</a></li>
-    </ul>
-  </nav>
+  <div data-include="components/header.html"></div>
 
   <main>
     <section>
+      <figure><a href="https://www.instagram.com/uncc_skateboarding/" target="-blank"> <img class="logo" src="./images/uncclogo.png" alt="uncc logo"></a><figcaption><p>Offical Logo</p></figcaption></figure>
       <h2>Welcome to UNCC Skateboarding</h2>
       <p>This is the hub for all things skateboarding at the University of North Carolina at Charlotte. Join us for competitions, meet-ups, and fun events around campus!</p>
     </section>
@@ -32,22 +21,38 @@
         <h2>Our Sponsors</h2>
         <p>We are grateful for the support from our amazing sponsors!</p>
         <div class="sponsor-list">
-          <!-- Replace these images and links with actual sponsor details -->
-          <a href="https://sponsor1.com" target="_blank">
-            <img src="images/sponsor1-logo.png" alt="Sponsor 1 Logo">
+          <a href="https://www.instagram.com/brokeboneswax/" target="_blank">
+            <figure>
+              <img src="images/brokeboneswax.jpg" alt="Sponsor 1 Logo">
+              <figcaption>Broke Bones Wax</figcaption>
+            </figure>
           </a>
-          <a href="https://sponsor2.com" target="_blank">
-            <img src="images/sponsor2-logo.png" alt="Sponsor 2 Logo">
+          <a href="https://www.instagram.com/chitwoodsboardshop/" target="_blank">
+            <figure>
+              <img src="images/chitwoods.jpg" alt="Sponsor 2 Logo">
+              <figcaption>Chitwood's Board Shop</figcaption>
+            </figure>
           </a>
           <a href="https://sponsor3.com" target="_blank">
-            <img src="images/sponsor3-logo.png" alt="Sponsor 3 Logo">
+            <figure>
+              <img src="images/unclesam.png" alt="Sponsor 3 Logo">
+              <figcaption>You??</figcaption>
+            </figure>
           </a>
+          
         </div>
       </section>
   </main>
 
-  <footer>
-    <p>&copy; 2024 UNCC Skateboarding Club</p>
-  </footer>
+  <div data-include="components/footer.html"></div>
+	<script src="scripts/HTMLInclude.min.js"></script>
+
+<script>
+    const pageData = {
+      newTitle: "Where skaters unite at UNCC!"
+    };
+  
+  </script>
+
 </body>
 </html>

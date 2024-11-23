@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet-ups - UNCC Skateboarding</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div data-include="components/header.html"></div>
+
+  <main>
+    
+  <h2>Skateboard Meetup</h2>
+
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img src="./images/lightrail.jpg" class="slide-img" alt="skaters on train">
+      <div class="text">Lightrail 2 Uptown</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="./images/uptownledges.jpg" class="slide-img" alt="skaters sitting on ledge">
+      <div class="text">Uptown Ledges</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="./images/goskateday24.jpg" class="slide-img" alt="skating tuck tuck">
+      <div class="text">Go Skate Day '24</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="./images/fall24drinks.jpg" class="slide-img" alt="modeling monsta">
+      <div class="text">Fall '24</div>
+    </div>
+    <div class="mySlides fade">
+      <img src="./images/tucktuckfall24.jpg" class="slide-img" alt="meet up at tuck">
+      <div class="text">Tuck-Tuck Meet up</div>
+    </div>
+    <!-- Add more slides as needed -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <script src="scripts.js"></script>
+  </main>
+
+  <div data-include="components/footer.html"></div>
+	<script src="scripts/HTMLInclude.min.js"></script>
+
+  <script>
+    let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "block";  
+}
+
+    const pageData = {
+      newTitle: "UNCC Off-Campus Events"
+    };
+  
+  </script>
+</body>
+</html>

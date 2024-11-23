@@ -1,0 +1,35 @@
+<header>
+    <h1>UNCC Club Skateboarding</h1> 
+    <strong><p id="header">page deets here</p></strong>
+    
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="campus_spots.html">Campus Spots</a></li>
+      <li><a href="sk8_comp.html">Competition</a></li>
+      <li><a href="meetup.html">Meet UPs</a></li>
+    </ul>
+  </nav>
+
+
+  <script>
+
+
+// Function to change the H1 text
+function changeHeaderText() {
+  // Get the H1 element
+  const header = document.getElementById("header");
+
+  // Change the text content of the H1 element to the new title from the object using a string literal
+  header.textContent = pageData["newTitle"];
+}
+
+// Apply the change when the page loads
+window.onload = function() {
+  changeHeaderText();
+};
+changeHeaderText();
+  </script>
