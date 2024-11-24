@@ -14,38 +14,56 @@
   <main>
     <h2>Explore Skate Spots on Campus</h2>
     <div>
-      <button class="spot">Spot 1</button>
-      <button class="spot">Spot 2</button>
-      <button class="spot">Spot 3</button>
+      <button class="spot">Stair Sets</button>
+      <button class="spot">Ledges</button>
+      <button class="spot">Flat Ground</button>
     </div>
     <div>
-      <img src="./images/dill.png" class="spot-img active" alt="Spot 1">
-      <img src="images/spot2.jpg" class="spot-img" alt="Spot 2">
-      <img src="images/spot3.jpg" class="spot-img" alt="Spot 3">
+      <!-- Placeholder images for Stair Sets -->
+      <img src="images/placeholder1.png" class="spot-img active" alt="Stair Sets Spot 1">
+      <img src="images/placeholder2.png" class="spot-img" alt="Stair Sets Spot 2">
+      <img src="images/placeholder3.png" class="spot-img" alt="Stair Sets Spot 3">
+      
+      <!-- Placeholder images for Ledges -->
+      <img src="images/placeholder4.png" class="spot-img" alt="Ledges Spot 1">
+      <img src="images/placeholder5.png" class="spot-img" alt="Ledges Spot 2">
+      <img src="images/placeholder6.png" class="spot-img" alt="Ledges Spot 3">
+
+      <!-- Placeholder images for Flat Ground -->
+      <img src="images/placeholder7.png" class="spot-img" alt="Flat Ground Spot 1">
+      <img src="images/placeholder8.png" class="spot-img" alt="Flat Ground Spot 2">
+      <img src="images/placeholder9.png" class="spot-img" alt="Flat Ground Spot 3">
     </div>
   </main>
 
-   <div data-include="components/footer.html"></div>
-	<script src="scripts/HTMLInclude.min.js"></script>
+  <div data-include="components/footer.html"></div>
+  <script src="scripts/HTMLInclude.min.js"></script>
   <script>
+    // Object with a property for the dynamic header note
     const pageData = {
       newTitle: "UNCC Campus Skate Spots"
     };
 
     // JavaScript for dynamic campus spots section
-document.addEventListener('DOMContentLoaded', () => {
-    const spots = document.querySelectorAll('.spot');
-    const images = document.querySelectorAll('.spot-img');
-  
-    spots.forEach((spot, index) => {
-      spot.addEventListener('click', () => {
-        images.forEach(img => img.classList.remove('active'));
-        images[index].classList.add('active');
+    document.addEventListener('DOMContentLoaded', () => {
+      const spots = document.querySelectorAll('.spot');
+      const images = document.querySelectorAll('.spot-img');
+      
+      spots.forEach((spot, spotIndex) => {
+        spot.addEventListener('click', () => {
+          images.forEach((img, imgIndex) => {
+            img.classList.remove('active');
+            // Show only the images that belong to the clicked spot
+            if (Math.floor(imgIndex / 3) === spotIndex) {
+              img.classList.add('active');
+            }
+          });
+        });
       });
     });
-  });
-  
   </script>
+
+
  
 </body>
 </html>
