@@ -40,6 +40,7 @@ body {
   
   /* Footer */
   footer {
+    box-sizing: border-box;
     background-color: #006f3c;
     color: #fcd116;
     text-align: center;
@@ -56,13 +57,31 @@ body {
   
   /* Campus Spots Dynamic Section */
   .spot-img {
+    box-sizing: border-box;
     display: none;
+    height: 50%;
+    width: 50%;
+    border: 2px solid #000;  
+    border-radius: 8px; 
+    padding: 10px;  
+    justify-content: center;
+    
+    
   }
-  
+
+  /* was told this warning would be removed (for some outdated IE ver 6 and earlier) */
   .spot-img.active {
     display: block;
   }
 
+  .spot-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Centering text and elements inside the container */
+  }
+ 
   /* Sponsors Section */
 #sponsors {
   text-align: center;
@@ -77,7 +96,7 @@ body {
 }
 
 .sponsor-list a img {
-  width: 150px; /* Adjust as needed */
+  width: 150px; 
   height: auto;
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -101,6 +120,7 @@ figure {
 } 
 
 .officer { 
+  box-sizing: border-box;
   width: 150px;  
   height: 300px; 
   width: 300px; 
@@ -128,6 +148,7 @@ figure {
 }
 
 .text {
+  box-sizing: border-box;
   color: #f2f2f2;
   font-size: 15px;
   padding: 8px 12px;
