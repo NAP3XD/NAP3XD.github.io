@@ -84,15 +84,25 @@
     </section>
 
     <section id="eda">
-      <h2>Data Understanding / Visualization</h2>
-      <div class="card">
-        <p>After preprocessing, the dataset contained over 65,000 patient records with a balanced mix of clinical, lifestyle, and demographic features. To better understand the data and connect it back to my main question, which modifiable lifestyle factors are most associated with cardiovascular disease, I began by examining the distributions of key variables and their relationships to the target.</p>
-        <p>The derived variables behaved as expected. Age in years showed a wide distribution from young adults into the 70s and beyond, with most patients between 40 and 65 years old. BMI followed a bell-shaped curve centered around 25–30, indicating that overweight and obesity are common in this sample. Pulse pressure clustered around 40–50 mmHg, which is within the typical healthy range, though a noticeable tail of elevated values suggests a subset of patients with stiffer arteries or uncontrolled blood pressure. These distributions confirm that the dataset reflects realistic clinical patterns.</p>
-        <p>Turning to lifestyle factors, I used bar charts to compare the prevalence of cardiovascular disease across alcohol use, smoking, and physical activity groups. Each bar was labeled with both the percentage of patients with CVD and the sample size, to avoid over-interpreting small categories. Interestingly, cardiovascular prevalence was only slightly higher among drinkers compared to non-drinkers, and the same pattern was seen for smokers versus non-smokers. By contrast, physical activity showed a clearer protective effect: inactive patients had a noticeably higher rate of CVD compared to those who reported being physically active.</p>
-        <p>I also explored interactions between lifestyle factors. Two-way plots showed how combinations such as alcohol + smoking or alcohol + activity related to disease prevalence. For example, patients who both smoked and drank tended to have the highest CVD rates, while those who were active non-drinkers showed the lowest. However, sample size graphs revealed that some combinations (such as active drinkers who also smoke) were relatively rare in the dataset, making it important to interpret those results cautiously.</p>
-        <p>Finally, I checked the overall class balance of the target variable. Cardiovascular disease was present in roughly half the sample, which means the dataset is not severely imbalanced. This balance is useful because it reduces the need for aggressive resampling or weighting during modeling. Together, these visualizations provided an important first look at the data and suggested that physical activity may have a stronger relationship with cardiovascular outcomes than alcohol or smoking alone, while also highlighting the need for careful interpretation of small subgroups.</p>
-      </div>
-    </section>
+  <h2>Data Understanding / Visualization</h2>
+  <div class="card">
+    <p>After preprocessing, the dataset contained over 65,000 patient records with a balanced mix of clinical, lifestyle, and demographic features. To better understand the data and connect it back to my main question, which modifiable lifestyle factors are most associated with cardiovascular disease, I began by examining the distributions of key variables and their relationships to the target.</p>
+    <p>The derived variables behaved as expected. Age in years showed a wide distribution from young adults into the 70s and beyond, with most patients between 40 and 65 years old. BMI followed a bell-shaped curve centered around 25–30, indicating that overweight and obesity are common in this sample. Pulse pressure clustered around 40–50 mmHg, which is within the typical healthy range, though a noticeable tail of elevated values suggests a subset of patients with stiffer arteries or uncontrolled blood pressure. These distributions confirm that the dataset reflects realistic clinical patterns.</p>
+    <p>Turning to lifestyle factors, I used bar charts to compare the prevalence of cardiovascular disease across alcohol use, smoking, and physical activity groups. Each bar was labeled with both the percentage of patients with CVD and the sample size, to avoid over-interpreting small categories. Interestingly, cardiovascular prevalence was only slightly higher among drinkers compared to non-drinkers, and the same pattern was seen for smokers versus non-smokers. By contrast, physical activity showed a clearer protective effect: inactive patients had a noticeably higher rate of CVD compared to those who reported being physically active.</p>
+    <p>I also explored interactions between lifestyle factors. Two-way plots showed how combinations such as alcohol + smoking or alcohol + activity related to disease prevalence. For example, patients who both smoked and drank tended to have the highest CVD rates, while those who were active non-drinkers showed the lowest. However, sample size graphs revealed that some combinations (such as active drinkers who also smoke) were relatively rare in the dataset, making it important to interpret those results cautiously.</p>
+    <p>Finally, I checked the overall class balance of the target variable. Cardiovascular disease was present in roughly half the sample, which means the dataset is not severely imbalanced. This balance is useful because it reduces the need for aggressive resampling or weighting during modeling. Together, these visualizations provided an important first look at the data and suggested that physical activity may have a stronger relationship with cardiovascular outcomes than alcohol or smoking alone, while also highlighting the need for careful interpretation of small subgroups.</p>
+
+    <!-- Image gallery for six visuals -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 24px;">
+      <img src="images/plot1.png" alt="Visualization 1" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+      <img src="images/plot2.png" alt="Visualization 2" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+      <img src="images/plot3.png" alt="Visualization 3" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+      <img src="images/plot4.png" alt="Visualization 4" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+      <img src="images/plot5.png" alt="Visualization 5" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+      <img src="images/plot6.png" alt="Visualization 6" style="width:100%; border:1px solid #e2e8f0; border-radius:8px;">
+    </div>
+  </div>
+</section>
 
     <section id="story">
       <h2>Storytelling</h2>
