@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What Makes a Rottweiler? — Dog Breed Classification Report</title>
+  <meta name="description" content="Dog breed classification report exploring transfer learning, fine-tuning, and evaluation with a focus on Rottweiler identification." />
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --card: #111520;
+      --muted: #8b93a7;
+      --text: #e6e9ef;
+      --accent: #88c0d0;
+      --accent-2:#a3be8c;
+      --danger:#d08770;
+      --border: rgba(255,255,255,.08);
+      --border-subtle: rgba(255,255,255,.06);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --maxw: 1100px;
+      --pad: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1a2238 0%, transparent 60%),
+        radial-gradient(1200px 600px at 120% 10%, #132035 0%, transparent 60%),
+        var(--bg);
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{color:var(--accent); text-decoration: none;}
+    a:hover{ text-decoration: underline; }
+
+    img{max-width:100%; display:block; border-radius:12px}
+
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:24px}
+
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      position:fixed; left:16px; top:16px; width:auto; height:auto; padding:8px 12px;
+      background:#000; color:#fff; border-radius:8px; z-index:1000;
+      outline: 2px solid var(--accent);
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(11,13,18,.85), rgba(11,13,18,.35));
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      max-width:var(--maxw); margin:0 auto; padding:12px 24px; gap:16px; flex-wrap:wrap;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow: var(--shadow)}
+    .brand h1{font-size:18px; margin:0}
+    .links{display:flex; gap:14px; flex-wrap:wrap; font-size:14px}
+
+    .hero{padding:48px 24px 8px}
+    .hero .title{font-size: clamp(28px, 3.4vw, 44px); margin:0 0 8px}
+    .meta{color:var(--muted); font-size:14px; margin:0}
+
+    section{margin:28px 0}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid var(--border);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .card .body{padding:var(--pad)}
+    .card h2{margin:0 0 8px; font-size: clamp(20px,2.2vw,28px)}
+    .card h3{margin:0 0 6px; font-size: clamp(16px,1.8vw,22px)}
+    .card h4{margin:8px 0 4px; font-size:16px}
+
+    .twocol{display:grid; grid-template-columns: 1.1fr .9fr; gap:18px}
+    @media (max-width: 900px){ .twocol{grid-template-columns: 1fr} }
+
+    .viz img{border:1px solid var(--border)}
+
+    .inference-results{margin-top:24px}
+    .inference-results .grid{display:grid; grid-template-columns: repeat(3,1fr); gap:16px}
+    @media (max-width:1050px){ .inference-results .grid{grid-template-columns: 1fr 1fr} }
+    @media (max-width:720px){ .inference-results .grid{grid-template-columns: 1fr} }
+
+    .inference-results .media{height:220px; background:#0f141f; border-top-left-radius: var(--radius); border-top-right-radius: var(--radius); overflow: hidden}
+    .inference-results .media img{width:100%; height:100%; object-fit:cover}
+
+    .cols{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width:720px){ .cols{grid-template-columns: 1fr} }
+
+    .pred{padding-left:18px; margin:6px 0 0}
+    .pred li{margin:2px 0}
+
+    .caption{color:var(--muted); font-size:14px; margin-top:4px}
+
+    .refs ol{margin:0; padding-left:20px}
+    .refs li{margin:10px 0}
+
+    footer{
+      color:var(--muted);
+      border-top: 1px solid var(--border-subtle);
+      padding:20px; margin-top:28px
+    }
+
+    /* Utility */
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header role="banner">
+    <nav class="nav" aria-label="Primary">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Dog Breed Classification — Report</h1>
+      </div>
+      <div class="links">
+        <a href="#intro">Intro</a>
+        <a href="#data">Data</a>
+        <a href="#prep">Preprocessing</a>
+        <a href="#viz">Visualization</a>
+        <a href="#model">Modeling</a>
+        <a href="#eval">Evaluation</a>
+        <a href="#story">Story</a>
+        <a href="#impact">Impact</a>
+        <a href="#refs">References</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" id="intro" aria-labelledby="title">
+      <h2 class="title" id="title">What makes a Rottweiler?</h2>
+      <p class="meta">Nicholas A. Pratt III · ITCS-3162</p>
+    </section>
+
+    <!-- Introduce the Problem -->
+    <section class="card" aria-labelledby="problem">
+      <div class="body">
+        <h2 id="problem">Introduce the Problem</h2>
+        <p>For this project, I focused on the task of dog breed classification from images. The goal is to build a model that can take a photo of a dog and correctly identify its breed. This is a classification problem because the target variable is a discrete category selected from many possible dog breeds. I was especially interested in seeing whether the model could identify my own dog’s breed, a Rottweiler, and how well it could distinguish between breeds that are visually similar.</p>
+        <p>This problem is challenging because there are more than one hundred different breeds in the dataset, and many of them share close visual similarities. For example, a Rottweiler and a Doberman have overlapping features such as color and body shape, which can confuse both humans and models. On top of that, the images vary widely in lighting, angle, and background, which forces the model to focus on the right details instead of irrelevant context. Another difficulty is that some breeds have far fewer training examples than others, which can cause imbalance and make it harder for the model to learn evenly across all classes.</p>
+        <p>The motivation for choosing this problem was to explore how well convolutional neural networks can handle image classification tasks in practice. I wanted to understand not only whether the model could learn to identify dog breeds, but also what techniques such as transfer learning, data augmentation, and fine-tuning would do to improve its performance. By tackling this project, I aimed to gain insights into the process of training deep learning models for real-world classification problems and reflect on the limitations and strengths of the approach.</p>
+      </div>
+    </section>
+
+    <!-- Introduce the Data -->
+    <section id="data" class="card" aria-labelledby="data-title">
+      <div class="body">
+        <h2 id="data-title">Introduce the Data</h2>
+        <p>The dataset I used for this project comes from Kaggle’s “Dog Breed Identification” competition, which is based on images of dogs from the Stanford Dogs dataset. It contains more than 10,000 labeled training images and a separate test set, covering over 100 different dog breeds. Each training image is associated with a unique identifier and a breed label, which makes it possible to link the image files to their corresponding class. The dataset is well-suited for this project because it provides a diverse collection of dog photographs taken in different poses, lighting conditions, and environments, which makes the classification task more realistic and challenging.</p>
+        <p>The main features of the dataset are the dog images themselves, which serve as the inputs to the model. The target variable is the dog’s breed, a categorical label that identifies which class each image belongs to. Because the images vary greatly in quality, size, and orientation, preprocessing is necessary to prepare them for machine learning. The dataset provides a good balance between being large enough to train deep learning models effectively and small enough to be manageable on consumer hardware with transfer learning.</p>
+      </div>
+    </section>
+
+    <!-- Preprocessing -->
+    <section id="prep" class="card" aria-labelledby="prep-title">
+      <div class="body">
+        <h2 id="prep-title">Preprocessing the Data</h2>
+        <p>Before training the model, I needed to carefully preprocess the dataset to ensure that the images were consistent and usable for deep learning. The first step was to link each image file with its corresponding breed label using the provided CSV file. Since the model requires numerical labels rather than text, I encoded the dog breeds into integers so that each unique breed was mapped to a class index. I also split the data into training and validation sets, with about fifteen percent reserved for validation, to measure how well the model generalized to unseen images.</p>
+        <p>The images in the dataset came in different sizes and orientations, so resizing and normalization were necessary. I chose a target image size of 224×224 pixels, which is the standard input dimension for ResNet models. For the training set, I applied data augmentation techniques such as random cropping, horizontal flipping, and color jitter. These augmentations help prevent overfitting by exposing the model to slightly altered versions of the same image, encouraging it to learn more robust features. For the validation set, I kept the preprocessing simpler, applying only resizing, cropping, and normalization so that the evaluation was consistent and unbiased.</p>
+        <p>Finally, I created custom dataset and dataloader objects in PyTorch. This allowed me to efficiently feed images and labels to the model in batches during training and validation. Using a dataloader also made it easy to shuffle the training set and parallelize the image loading process, which sped up training. Together, these preprocessing steps ensured that the dataset was properly formatted, standardized, and ready for modeling.</p>
+      </div>
+    </section>
+
+    <!-- Visualization -->
+    <section id="viz" class="card" aria-labelledby="viz-title">
+      <div class="body">
+        <h2 id="viz-title">Data Understanding &amp; Visualization</h2>
+        <div class="twocol">
+          <div class="viz">
+            <p>Once the dataset was prepared, I explored it further to better understand its structure and potential challenges. The first step was to look at the distribution of breeds. Some breeds had a large number of examples, while others had relatively few. This imbalance is important because it means the model might learn to favor the more common breeds unless corrective measures, such as weighted loss functions or oversampling, are used. I also looked at a few sample images across breeds to get a sense of the natural variation in the data. It quickly became clear that backgrounds, poses, and lighting conditions varied significantly, which adds noise but also makes the task more realistic, since photos in the real world are rarely uniform.</p>
+            <p>I also visualized the number of training images per breed as a bar chart. This confirmed that while most breeds had a reasonable number of samples, there was a noticeable long tail of underrepresented classes. This helped me anticipate that the model might struggle with less common breeds, such as those with only a few dozen training images. On the other hand, popular breeds had hundreds of examples, giving the model a stronger chance of learning those distinctions.</p>
+            <p>These visualizations and checks directly informed my modeling decisions. Understanding the imbalance and variability in the dataset reinforced the importance of using data augmentation, which increases the diversity of training examples and makes the model less sensitive to noise. It also motivated the use of transfer learning, since relying on pre-trained features helps compensate for the limited number of images in certain classes. By exploring the data visually and statistically, I gained insight into both the strengths and limitations of the dataset, which guided the approach to training and evaluating the model.</p>
+
+            <figure>
+              <img src="images/ran_img.png" alt="Sample dogs across breeds" />
+              <figcaption class="caption">Sample dogs across multiple breeds.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/ran_rots.png" alt="Rottweiler samples" />
+              <figcaption class="caption">Rottweiler-only sample grid.</figcaption>
+            </figure>
+            <figure>
+              <img src="images/histo_class_counts.png" alt="Bar chart of images per breed" />
+              <figcaption class="caption">Training images per breed (class imbalance).</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modeling -->
+    <section id="model" class="card" aria-labelledby="model-title">
+      <div class="body">
+        <h2 id="model-title">Modeling</h2>
+        <p>For the modeling stage, I chose to use a convolutional neural network with transfer learning, specifically a ResNet architecture. ResNet, or Residual Network, is well known for its ability to train very deep networks without running into vanishing gradient problems because of its use of skip connections. These residual connections allow information to pass directly across layers, making the network more efficient at learning both low-level features such as edges and textures and high-level features such as shapes and patterns. This makes ResNet particularly effective for image classification tasks like dog breed identification.
+Instead of training a network from scratch, I used a ResNet model pre-trained on the large ImageNet dataset. This approach is called transfer learning, and it provides a strong starting point because the model has already learned to detect a wide variety of visual features. Initially, I froze most of the network’s layers and only trained the final fully connected classification layer. This strategy allowed the model to quickly adapt its outputs to the dog breed dataset without overfitting or requiring excessive compute power.
+After establishing this baseline, I improved performance by unfreezing the final ResNet block, known as layer4, along with the fully connected layer. Fine-tuning these deeper layers allowed the model to adjust its higher-level feature detectors to become more specialized for the subtle differences between breeds. This step was especially valuable for breeds that are visually similar, such as Rottweilers and Dobermans, where small details matter. I trained the model using cross-entropy loss, the AdamW optimizer, and a learning rate scheduler to adjust training dynamics as validation loss plateaued.
+Overall, the combination of transfer learning, careful freezing and unfreezing of layers, and fine-tuning provided a strong modeling strategy. It balanced the efficiency of using pre-trained knowledge with the flexibility to adapt the network to the specifics of the dog breed classification task.
+
+</p>
+      </div>
+    </section>
+
+    <!-- Evaluation -->
+    <section id="eval" class="card" aria-labelledby="eval-title">
+      <div class="body">
+        <h2 id="eval-title">Evaluation</h2>
+        <p>To evaluate the performance of the model, I relied on both Top-1 and Top-3 accuracy. Top-1 accuracy measures how often the model’s single most confident prediction matches the true label, while Top-3 accuracy allows for cases where the correct breed is among the top three guesses. With over one hundred possible breeds, Top-3 accuracy provides a more balanced picture of whether the model is learning meaningful distinctions, especially when breeds are very similar.
+On the validation set, the model performed well, achieving solid Top-1 accuracy and even stronger Top-3 accuracy. A confusion matrix of the most common breeds showed that mistakes occurred most often between dogs with similar appearances, such as Rottweilers, Dobermans, and Great Danes. This confirmed that the model was learning useful features but still struggled in cases where visual overlap was high.
+The improvement from fine-tuning was especially clear when testing the model on personal images of my own Rottweiler. Before unlocking the last ResNet block, the breed “Rottweiler” often appeared only in the Top-5 predictions and not in the Top-3. After fine-tuning, however, Rottweiler consistently moved higher in the ranking. For example, in one test photo (“moses_couch.jpg”), Rottweiler became the top prediction with 65.9% confidence, far above the next closest breed. In another case (“moses_dock.jpg”), Rottweiler ranked first again at 38% confidence, while similar breeds such as Appenzeller and Doberman followed behind. Even in a more difficult case with unusual positioning (“moses_sleeping.jpg”), the model placed Rottweiler in the Top-2 predictions rather than barely in the Top-5.
+These results highlight how fine-tuning deeper layers allowed the model to refine its understanding of subtle breed differences. While the predictions are not perfect, the consistent movement of Rottweiler into the top guesses shows that the model is genuinely learning to capture the important visual details of the breed. This demonstrates not only the value of transfer learning but also the importance of selectively unfreezing layers to adapt the model to a specialized classification task.
+</p>
+
+        <section class="inference-results" aria-labelledby="inference-title">
+          <h3 id="inference-title">Rottweiler Inference — Before vs After Fine-Tuning</h3>
+          <p class="caption">Each card shows one of my test photos with Top-5 breed predictions before and after fine-tuning.</p>
+
+          <div class="grid" role="list">
+            <!-- Card 1 -->
+            <article class="card" role="listitem" aria-labelledby="c1-title">
+              <div class="media">
+                <img src="images/moses_couch.jpg" alt="Dog on couch" />
+              </div>
+              <div class="body">
+                <h4 id="c1-title">moses_couch.jpg</h4>
+                <div class="cols">
+                  <div>
+                    <h5 class="sr-only">Before (pre-tune)</h5>
+                    <p><strong>Before (pre-tune)</strong></p>
+                    <ol class="pred">
+                      <li>miniature_pinscher — 0.177</li>
+                      <li>rottweiler — 0.089</li>
+                      <li>pug — 0.086</li>
+                      <li>doberman — 0.070</li>
+                      <li>labrador_retriever — 0.064</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <h5 class="sr-only">After (fine-tuned)</h5>
+                    <p><strong>After (fine-tuned)</strong></p>
+                    <ol class="pred">
+                      <li>rottweiler — 0.659</li>
+                      <li>black-and-tan_coonhound — 0.158</li>
+                      <li>miniature_pinscher — 0.057</li>
+                      <li>labrador_retriever — 0.042</li>
+                      <li>doberman — 0.035</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card" role="listitem" aria-labelledby="c2-title">
+              <div class="media">
+                <img src="images/moses_dock.jpg" alt="Dog standing on dock" />
+              </div>
+              <div class="body">
+                <h4 id="c2-title">moses_dock.jpg</h4>
+                <div class="cols">
+                  <div>
+                    <p><strong>Before (pre-tune)</strong></p>
+                    <ol class="pred">
+                      <li>doberman — 0.165</li>
+                      <li>appenzeller — 0.109</li>
+                      <li>italian_greyhound — 0.070</li>
+                      <li>weimaraner — 0.049</li>
+                      <li>rottweiler — 0.047</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <p><strong>After (fine-tuned)</strong></p>
+                    <ol class="pred">
+                      <li>rottweiler — 0.380</li>
+                      <li>appenzeller — 0.200</li>
+                      <li>doberman — 0.117</li>
+                      <li>greater_swiss_mountain_dog — 0.085</li>
+                      <li>gordon_setter — 0.081</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card" role="listitem" aria-labelledby="c3-title">
+              <div class="media">
+                <img src="images/moses_sleeping.jpg" alt="Dog sleeping" />
+              </div>
+              <div class="body">
+                <h4 id="c3-title">moses_sleeping.jpg</h4>
+                <div class="cols">
+                  <div>
+                    <p><strong>Before (pre-tune)</strong></p>
+                    <ol class="pred">
+                      <li>rottweiler — 0.156</li>
+                      <li>greater_swiss_mountain_dog — 0.111</li>
+                      <li>french_bulldog — 0.061</li>
+                      <li>pug — 0.050</li>
+                      <li>italian_greyhound — 0.048</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <p><strong>After (fine-tuned)</strong></p>
+                    <ol class="pred">
+                      <li>black-and-tan_coonhound — 0.501</li>
+                      <li>rottweiler — 0.104</li>
+                      <li>redbone — 0.077</li>
+                      <li>bloodhound — 0.074</li>
+                      <li>greater_swiss_mountain_dog — 0.054</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section id="story" class="card" aria-labelledby="story-title">
+      <div class="body">
+        <h2 id="story-title">Storytelling</h2>
+        <p>This project began with a simple but exciting question: could I train a model to recognize different dog breeds, and more specifically, could it correctly identify my own dog, a Rottweiler? At first, the task seemed straightforward, but as I explored the data and tested the model, I quickly realized how challenging fine-grained image classification can be. Many breeds in the dataset are visually similar, and the uneven distribution of images made it harder for the model to learn consistently across all classes.</p>
+        <p>My initial model, trained by freezing most of ResNet and only updating the final classification layer, achieved reasonable accuracy, but its predictions for Rottweilers were often inconsistent. In my own test photos, the model would sometimes list Rottweiler among the Top-5 predictions, but rarely in the Top-3. This result matched what I saw in the validation set: the model was learning useful general features but had trouble making fine distinctions between related breeds.</p>
+        <p>The turning point came with fine-tuning. By unlocking the final ResNet block in addition to the classification head, the model gained the flexibility to adjust its higher-level features to the specifics of dog breeds. The difference was clear in my personal test images. Where before Rottweiler was a lower-ranked guess, after fine-tuning it consistently rose to the top of the list. In one photo, the model predicted Rottweiler with over 65% confidence, showing a dramatic improvement in both accuracy and certainty. Even in trickier cases, where lighting or pose made recognition difficult, Rottweiler still appeared among the top predictions rather than being pushed down the list.</p>
+        <p>Through this process, I learned that building an effective classification model is not just about choosing an architecture but about carefully managing data preparation, training strategies, and evaluation. Techniques like transfer learning and fine-tuning made it possible to achieve strong results even with a relatively limited dataset. More importantly, I saw firsthand how small adjustments, like unlocking certain layers, can have a significant impact on performance. In the end, the model did what I hoped: it learned to recognize my Rottweiler, and in doing so, it gave me valuable insight into both the power and limitations of modern deep learning methods.</p>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section id="impact" class="card" aria-labelledby="impact-title">
+      <div class="body">
+        <h2 id="impact-title">Impact</h2>
+        <p>While building a dog breed classification model is technically interesting and rewarding, it also raises important social and ethical questions. One of the most pressing concerns is the connection between breed identification and breed-specific legislation (BSL). BSL refers to laws and policies that restrict or ban ownership of certain dog breeds, often including Rottweilers, Pit Bulls, and Dobermans. These laws are controversial because they are based on broad stereotypes rather than individual behavior, and they can lead to discrimination against responsible dog owners and unnecessary euthanasia of family pets.</p>
+        <p>Because of this, a technology that automatically identifies dog breeds could be misused if applied in the wrong context. For example, an app or surveillance system using this type of model could be used to enforce discriminatory laws rather than promote positive outcomes for animals. That is not the purpose of this project. My goal was to explore image classification and machine learning techniques in an academic setting, and to test the limits of transfer learning and fine-tuning. The project is not intended to provide a tool for enforcement of BSL or to contribute to policies that unfairly target certain breeds.</p>
+        <p>At the same time, this type of technology could have positive applications if used responsibly. For example, breed identification could help shelters organize records, assist veterinarians in cross-checking breed information, or help dog owners better understand the unique needs of their pets. The key point is that, like many machine learning tools, this project exists within a broader social context. The potential impact depends not only on the technical accuracy of the model but also on the choices made about how it is used.</p>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section id="refs" class="card refs" aria-labelledby="refs-title">
+      <div class="body">
+        <h2 id="refs-title">References</h2>
+        <ol>
+          <li>Kaggle. Dog Breed Identification Dataset. Retrieved from <a href="https://www.kaggle.com/c/dog-breed-identification" target="_blank" rel="noopener">kaggle.com/c/dog-breed-identification</a></li>
+          <li>He, K., Zhang, X., Ren, S., &amp; Sun, J. (2015). Deep Residual Learning for Image Recognition. <em>arXiv:1512.03385</em>.</li>
+          <li>Paszke, A., Gross, S., Massa, F., et&nbsp;al. (2019). PyTorch: An Imperative Style, High-Performance Deep Learning Library. <em>NeurIPS 32</em>.</li>
+          <li>OpenAI. ChatGPT (GPT-5). Used as an AI assistant for guidance in modules and explanation.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap" role="contentinfo">
+    <p>Replace placeholder images with your own.</p>
+    <p><strong>Code Repository:</strong> <a href="https://github.com/yourusername/yourrepo" target="_blank" rel="noopener">View on GitHub</a></p>
+  </footer>
+</body>
+</html>
